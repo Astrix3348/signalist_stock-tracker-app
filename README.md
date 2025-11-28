@@ -7,16 +7,15 @@ investors, and financial enthusiasts who require accurate, real-time insights an
 for better decision-making. 
 
 ### 🔍 Motivation & Goals  
-- Why did you build this app?  
-- What problem does it solve?  
-- What sets it apart (features / design / architecture)?  
+- Building this app in order to get more hands on experience on next.js and various other technologies and to understand typescript. 
+- It's and app in which users can view real time stock data which helps people who trade on a daily basis. 
+- We are taking widgets from trading view which further simplifies our web interface and directly links to relevant websites to get more info on particular stock. 
 
 ## 📦 Tech Stack & Dependencies  
-- Frontend: React + Material-UI  
-- Backend: FastAPI (Python)  
-- Any other dependencies / versions (e.g. Python version, npm, databases, APIs)  
-- Operating systems / environment assumptions  
-
+- Frontend: React + Next.js + shadcn  
+- Backend: betterAuth 
+- (npm, mongoDb, APIs)  
+ 
 ## 🛠️ Installation & Setup  
 Step-by-step instructions so someone can get it running:  
 

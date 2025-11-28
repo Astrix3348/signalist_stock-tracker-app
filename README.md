@@ -1,8 +1,10 @@
 # signalist_stock-tracker-app  
 
 ## 🚀 Project Overview  
-A concise description:  
-What the app does, who it's for, and why it matters.  
+The App allows users to view live stock data, analyze interactive charts, manage
+personalized watchlists, receive alerts, and access AI-generated summaries. It is designed for traders,
+investors, and financial enthusiasts who require accurate, real-time insights and intelligent automation
+for better decision-making. 
 
 ### 🔍 Motivation & Goals  
 - Why did you build this app?  

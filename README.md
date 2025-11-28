@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/public/icons/logo.svg" width="120" />
+  <img src="public/assets/icons/logo.svg" width="120" />
   <h1>signalist_stock-tracker-app</h1>
 </p>
 

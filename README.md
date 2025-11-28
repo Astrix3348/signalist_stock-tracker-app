@@ -1,4 +1,7 @@
-# signalist_stock-tracker-app 
+<p align="center">
+  <img src="assets/logo.png" width="120" />
+  <h1>signalist_stock-tracker-app</h1>
+</p>
 
 ![Status](https://img.shields.io/badge/Status-Active-success)
 ![Build](https://img.shields.io/badge/Build-Passing-blue)

@@ -1,4 +1,22 @@
-# signalist_stock-tracker-app  
+# signalist_stock-tracker-app 
+
+# signalist_stock-tracker-app
+
+![Repo Size](https://img.shields.io/github/repo-size/Astrix3348/signalist_stock-tracker-app)
+![Stars](https://img.shields.io/github/stars/Astrix3348/signalist_stock-tracker-app?style=flat)
+![Forks](https://img.shields.io/github/forks/Astrix3348/signalist_stock-tracker-app?style=flat)
+![Issues](https://img.shields.io/github/issues/Astrix3348/signalist_stock-tracker-app)
+![License](https://img.shields.io/github/license/Astrix3348/signalist_stock-tracker-app)
+![Last Commit](https://img.shields.io/github/last-commit/Astrix3348/signalist_stock-tracker-app)
+
+<!-- Tech badges -->
+![Next.js](https://img.shields.io/badge/Next.js-000000?logo=nextdotjs&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?logo=mongodb&logoColor=white)
+![BetterAuth](https://img.shields.io/badge/betterAuth-backend-blue)
+![TradingView](https://img.shields.io/badge/TradingView-2E86C1)
+
 
 ## 🚀 Project Overview  
 The App allows users to view live stock data, analyze interactive charts, manage

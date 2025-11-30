@@ -1,20 +1,40 @@
-# signalist_stock-tracker-app  
+<p align="center">
+  <img src="public/assets/icons/logo.svg" width="160" />
+  <h1>signalist_stock-tracker-app</h1>
+</p>
+
+![Status](https://img.shields.io/badge/Status-Active-success)
+![Build](https://img.shields.io/badge/Build-Passing-blue)
+![Version](https://img.shields.io/badge/Version-1.0.0-informational)
+![Maintained](https://img.shields.io/badge/Maintained-Yes-brightgreen)
+
+<!-- Tech Stack Badges -->
+![Next.js](https://img.shields.io/badge/Next.js-000000?logo=nextdotjs&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)
+![Shadcn](https://img.shields.io/badge/shadcn/ui-000000)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?logo=mongodb&logoColor=white)
+![BetterAuth](https://img.shields.io/badge/BetterAuth-backend-blue)
+![TradingView](https://img.shields.io/badge/TradingView-2E86C1)
+
+
 
 ## 🚀 Project Overview  
-A concise description:  
-What the app does, who it's for, and why it matters.  
+The App allows users to view live stock data, analyze interactive charts, manage
+personalized watchlists, receive alerts, and access AI-generated summaries. It is designed for traders,
+investors, and financial enthusiasts who require accurate, real-time insights and intelligent automation
+for better decision-making. 
 
 ### 🔍 Motivation & Goals  
-- Why did you build this app?  
-- What problem does it solve?  
-- What sets it apart (features / design / architecture)?  
+- Building this app in order to get more hands on experience on next.js and various other technologies and to understand typescript. 
+- It's and app in which users can view real time stock data which helps people who trade on a daily basis. 
+- We are taking widgets from trading view which further simplifies our web interface and directly links to relevant websites to get more info on particular stock. 
 
 ## 📦 Tech Stack & Dependencies  
-- Frontend: React + Material-UI  
-- Backend: FastAPI (Python)  
-- Any other dependencies / versions (e.g. Python version, npm, databases, APIs)  
-- Operating systems / environment assumptions  
-
+- Frontend: React + Next.js + shadcn  
+- Backend: betterAuth 
+- (npm, mongoDb, APIs)  
+ 
 ## 🛠️ Installation & Setup  
 Step-by-step instructions so someone can get it running:  
 

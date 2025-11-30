@@ -2,8 +2,13 @@
 import InputField from "@/components/forms/InputField";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form"
+import {signUpWithEmail} from "@/lib/actions/auth.actions";
+import {useRouter} from "next/navigation";
+import {toast} from "sonner";
+import {error} from "better-auth/api";
 
 const SignUp = () => {
+    const router = useRouter();
 const {
   register,
   handleSubmit,
@@ -23,9 +28,13 @@ const {
 },);
 const onSubmit = async (data: SignUpFormData) => {
   try {
-     console.log(data);
+     const result = await signUpWithEmail(data);
+     if(result.success) router.push("/");
   } catch (e) {
     console.error(e);
+    toast.error('Something went wrong!', {
+        description: e instanceof Error ? e.message : 'Failed to create an Account!',
+    });
   }
 }
 
@@ -37,7 +46,7 @@ const onSubmit = async (data: SignUpFormData) => {
       <InputField
         name="fullName"
         label="Full Name"
-        placeholder="John Doe"
+        placeholder="enter your name"
         register={register}
         error={errors.fullName}
         validation={{ required: 'Full Name is required', minLength: 2 }}
@@ -55,7 +64,7 @@ const onSubmit = async (data: SignUpFormData) => {
       <InputField
         name="password"
         label="Password"
-        placeholder="Enter a strong password"
+        placeholder="enter a strong password"
         type="password"
         register={register}
         error={errors.password}

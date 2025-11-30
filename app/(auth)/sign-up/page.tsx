@@ -1,7 +1,10 @@
 'use client';
 import InputField from "@/components/forms/InputField";
 import { Input } from "@/components/ui/input";
+import { INVESTMENT_GOALS, PREFERRED_INDUSTRIES, RISK_TOLERANCE_OPTIONS } from "@/lib/constants";
 import { useForm } from "react-hook-form"
+import { SelectFields } from "@/components/forms/SelectFields";
+
 
 const SignUp = () => {
 const {
@@ -42,7 +45,35 @@ const onSubmit = async (data: SignUpFormData) => {
         error={errors.fullName}
         validation={{ required: 'Full Name is required', minLength: 2 }}
       />
-      
+       {/*Country*/}
+
+       <SelectFields
+       name="investmentGoals"
+       label="Investment Goals"
+       placeholder="Select your investment goals"
+       options={INVESTMENT_GOALS}
+       control={control}
+       error={errors.investmentGoals}
+       required
+       />
+        <SelectFields
+       name="riskTolerance"
+       label="Risk Tolerance"
+       placeholder="Select your risk level"
+       options={RISK_TOLERANCE_OPTIONS}
+       control={control}
+       error={errors.riskTolerance}
+       required
+       />
+        <SelectFields
+       name="preferredIndustry"
+       label="Preferred Industry"
+       placeholder="Select your preferred industry"
+       options={PREFERRED_INDUSTRIES}
+       control={control}
+       error={errors.preferredIndustry}
+       required
+       />
       <InputField
         name="email"
         label="Email"
@@ -70,5 +101,4 @@ const onSubmit = async (data: SignUpFormData) => {
     </>
   )
 }
-
 export default SignUp;

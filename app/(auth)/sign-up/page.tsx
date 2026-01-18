@@ -51,7 +51,7 @@ const SignUp = () => {
                 <InputField
                     name="fullName"
                     label="Full Name"
-                    placeholder="John Doe"
+                    placeholder="enter your full name"
                     register={register}
                     error={errors.fullName}
                     validation={{ required: 'Full name is required', minLength: 2 }}
@@ -60,7 +60,7 @@ const SignUp = () => {
                 <InputField
                     name="email"
                     label="Email"
-                    placeholder="contact@jsmastery.com"
+                    placeholder="enter your email"
                     register={register}
                     error={errors.email}
                     validation={{ required: 'Email name is required', pattern: /^\w+@\w+\.\w+$/, message: 'Email address is required' }}
@@ -69,7 +69,7 @@ const SignUp = () => {
                 <InputField
                     name="password"
                     label="Password"
-                    placeholder="Enter a strong password"
+                    placeholder="enter a strong password"
                     type="password"
                     register={register}
                     error={errors.password}

@@ -3,7 +3,9 @@ import {PERSONALIZED_WELCOME_EMAIL_PROMPT} from "@/lib/inngest/prompts";
 import {sendWelcomeEmail} from "@/lib/nodemailer";
 
 export const sendSignUpEmail = inngest.createFunction(
-    { id: 'sign-up-email'},
+    { 
+        id: 'sign-up-email', retries: 1,
+    },
     {event: 'app/user.created'},
     async ({ event, step }) => {
         const userProfile = `
@@ -16,7 +18,7 @@ export const sendSignUpEmail = inngest.createFunction(
         const prompt = PERSONALIZED_WELCOME_EMAIL_PROMPT.replace('{{userProfile}}', userProfile)
 
         const response = await step.ai.infer('generate-welcome-intro', {
-            model: step.ai.models.gemini({ model: 'gemini-2.0-flash'}),
+            model: step.ai.models.gemini({ model: 'gemini-2.0-flash-lite'}),
                 body: {
                     contents: [
                         {
@@ -28,6 +30,7 @@ export const sendSignUpEmail = inngest.createFunction(
                     ]
                 }
         })
+        
         await step.run('send-welcome-email', async ()=> {
             const part = response.candidates?.[0]?.content?.parts?.[0];
             const introText = (part && 'text' in part ? part.text : null) || 'Thanks for joining Signalist. You now have the tools to track markets and make smarter moves.';

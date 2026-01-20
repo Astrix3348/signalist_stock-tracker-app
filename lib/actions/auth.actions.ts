@@ -4,21 +4,31 @@ import {auth} from "@/lib/better-auth/auth";
 import {inngest} from "@/lib/inngest/client";
 import {headers} from "next/headers";
 
-export const signUpWithEmail = async ({ email, password, fullName, country, investmentGoals, riskTolerance, preferredIndustry }: SignUpFormData) => {
+export const signUpWithEmail = async ({email, password, fullName, country, investmentGoals, riskTolerance, preferredIndustry} : SignUpFormData) => {
     try {
-        const response = await auth.api.signUpEmail({ body: { email, password, name: fullName } })
+        const response = await auth.api.signUpEmail({
+            body:{email, password, name: fullName}
+        })
 
-        if(response) {
+        if(response){
             await inngest.send({
                 name: 'app/user.created',
-                data: { email, name: fullName, country, investmentGoals, riskTolerance, preferredIndustry }
+                data: {
+                    email,
+                    name:fullName,
+                    country,
+                    investmentGoals,
+                    riskTolerance,
+                    preferredIndustry
+                }
             })
         }
+        
+        return { success: true , data: response }
+    }catch (e){
+        console.log('Sign up Failed', e);
+        return {success:false, error: 'Sign up Failed'};
 
-        return { success: true, data: response }
-    } catch (e) {
-        console.log('Sign up failed', e)
-        return { success: false, error: 'Sign up failed' }
     }
 }
 
@@ -40,4 +50,5 @@ export const signOut = async () => {
         console.log('Sign out failed', e)
         return { success: false, error: 'Sign out failed' }
     }
+
 }

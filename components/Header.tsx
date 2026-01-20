@@ -7,6 +7,7 @@ import {searchStocks} from "@/lib/actions/finnhub.actions";
 const Header = async ({ user }: { user: User }) => {
     const initialStocks = await searchStocks();
 
+
     return (
         <header className="sticky top-0 header">
             <div className="container header-wrapper">
@@ -20,6 +21,7 @@ const Header = async ({ user }: { user: User }) => {
                 <UserDropdown user={user} initialStocks={initialStocks} />
             </div>
         </header>
+
     )
 }
 export default Header

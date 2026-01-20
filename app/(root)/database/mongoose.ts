@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
+//next js hot reloads and runs the file multiple times without caching, so many connections would open and mongoDB will throw too many connections error
 declare global {
     var mongooseCache: {
         conn : typeof mongoose | null;

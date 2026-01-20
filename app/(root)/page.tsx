@@ -7,6 +7,8 @@ import {
 } from "@/lib/constants";
 
 
+//When the dashboard loads, the TradingViewWidget component dynamically injects TradingView’s external script into the DOM. The widget reads the configuration JSON that contains symbols, theme, interval, and exchange. TradingView servers stream real-time data directly into the iframe, so our backend is not overloaded.
+
 
 const Home = () => {
     const scriptUrl=`https://s3.tradingview.com/external-embedding/embed-widget-`;

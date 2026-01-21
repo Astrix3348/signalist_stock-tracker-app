@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signalist Stock Tracker - Complete Tech Stack & APIs Explanation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #0FEDBE;
+            padding-bottom: 20px;
+        }
+        
+        h1 {
+            color: #0FEDBE;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+            font-style: italic;
+        }
+        
+        .date {
+            color: #999;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+        
+        h2 {
+            color: #0FEDBE;
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        h3 {
+            color: #333;
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .api-section {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #0FEDBE;
+            border-radius: 4px;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .badge {
+            background-color: #0FEDBE;
+            color: #333;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.85em;
+            margin-right: 12px;
+        }
+        
+        .files-list {
+            background-color: #f0f8f5;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .file-path {
+            color: #0FEDBE;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+        
+        .file-path:first-child {
+            margin-top: 0;
+        }
+        
+        .description {
+            color: #666;
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        code {
+            background-color: #e8e8e8;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .code-block {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            line-height: 1.4;
+        }
+        
+        .flow-diagram {
+            background-color: #f0f8f5;
+            padding: 20px;
+            border-radius: 4px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            border: 2px solid #0FEDBE;
+        }
+        
+        .flow-arrow {
+            text-align: center;
+            color: #0FEDBE;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .flow-step {
+            background-color: white;
+            padding: 10px;
+            border: 1px solid #0FEDBE;
+            border-radius: 4px;
+            margin: 5px 0;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        ul, ol {
+            margin-left: 30px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        strong {
+            color: #0FEDBE;
+        }
+        
+        .highlight {
+            background-color: #fffacd;
+            padding: 2px 4px;
+            border-radius: 2px;
+        }
+        
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .summary-table th,
+        .summary-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .summary-table th {
+            background-color: #0FEDBE;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .summary-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .summary-table tr:hover {
+            background-color: #f0f8f5;
+        }
+        
+        .key-features {
+            background-color: #f0f8f5;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+        
+        .key-features li {
+            list-style-type: none;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .key-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #0FEDBE;
+            font-weight: bold;
+        }
+        
+        .page-break {
+            page-break-after: always;
+            margin: 40px 0;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+            color: #999;
+            font-size: 0.9em;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Signalist Stock Tracker</h1>
+            <p class="subtitle">Complete Tech Stack & APIs Explanation</p>
+            <p class="date">Prepared for: Project Review | Date: January 21, 2026</p>
+        </header>
+
+        <!-- 1. FINNHUB API -->
+        <div class="api-section">
+            <h2>1. FINNHUB API - Stock Market Data Provider</h2>
+            
+            <h3>What is it?</h3>
+            <p>Real-time financial data API that provides stock prices, company news, quotes, and comprehensive market data. This is the backbone of your stock data layer.</p>
+            
+            <h3>Configuration</h3>
+            <p><strong>API Key:</strong> <code>NEXT_PUBLIC_FINNHUB_API_KEY</code></p>
+            <p><strong>Base URL:</strong> <code>https://finnhub.io/api/v1</code></p>
+            <p><strong>Endpoints Used:</strong></p>
+            <ul>
+                <li><code>/company-news</code> - Fetch news for specific stock symbols</li>
+                <li><code>/news</code> - Fetch general market news</li>
+                <li><code>/quote</code> - Real-time stock prices</li>
+                <li><code>/profile2</code> - Company information</li>
+            </ul>
+            
+            <h3>Why You Need It</h3>
+            <ul>
+                <li>Fetch real-time stock prices and market data</li>
+                <li>Display company-specific news articles</li>
+                <li>Get market sentiment and financial metrics</li>
+                <li>Provide reliable, aggregated financial data</li>
+            </ul>
+            
+            <h3>Files & Implementation</h3>
+            <div class="files-list">
+                <div class="file-path">📄 lib/actions/finnhub.actions.ts</div>
+                <div class="description">
+                    <strong>Key Functions:</strong>
+                    <ul style="margin-top: 5px; margin-bottom: 0;">
+                        <li><code>getNews(symbols?: string[])</code> - Fetch company news</li>
+                        <li><code>fetchJSON&lt;T&gt;(url, revalidateSeconds)</code> - Utility for API calls with caching</li>
+                    </ul>
+                </div>
+                
+                <div class="file-path">📄 lib/constants.ts</div>
+                <div class="description">
+                    Stores popular stock symbols and market configuration
+                </div>
+            </div>
+            
+            <h3>Implementation Details</h3>
+            <p><strong>Caching Strategy:</strong> News is cached for 300 seconds to reduce API quota usage and improve performance.</p>
+            
+            <div class="code-block">
+// Caching configuration
+const options = {
+    cache: 'force-cache',
+    next: { revalidate: 300 }  // 5 minute cache
+}
+
+// News fetching with round-robin selection
+const perSymbolArticles = {};
+cleanSymbols.forEach(async (symbol) => {
+    const url = `${FINNHUB_BASE_URL}/company-news?symbol=${symbol}&from=${from}&to=${to}&token=${token}`;
+    const articles = await fetchJSON(url, 300);
+});
+            </div>
+            
+            <h3>Key Features</h3>
+            <div class="key-features">
+                <ul>
+                    <li><strong>Round-robin Algorithm:</strong> When multiple stocks are provided, selects news from each stock evenly</li>
+                    <li><strong>Deduplication:</strong> Filters duplicate articles based on URL and headline</li>
+                    <li><strong>Validation:</strong> Validates articles before returning (checks for required fields)</li>
+                    <li><strong>Fallback:</strong> Falls back to general market news if company-specific news unavailable</li>
+                </ul>
+            </div>
+            
+            <h3>Data Flow</h3>
+            <div class="flow-diagram">
+                <div class="flow-step">User searches for stock symbol</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Calls finnhub.actions.ts getNews()</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">API call to Finnhub endpoints</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Parse and format response</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Return articles with metadata</div>
+            </div>
+        </div>
+
+        <!-- 2. TradingView Widget -->
+        <div class="api-section">
+            <h2>2. TradingView Widget - Interactive Charts & Visualization</h2>
+            
+            <h3>What is it?</h3>
+            <p>Professional-grade charting library that provides embedded, interactive stock charts, heatmaps, and market overview without building from scratch.</p>
+            
+            <h3>Why You Need It</h3>
+            <ul>
+                <li>Real-time, interactive stock charts with no backend strain</li>
+                <li>Professional market visualization (heatmaps, timelines)</li>
+                <li>Multi-symbol comparison capabilities</li>
+                <li>Reduced server load - TradingView handles data streaming</li>
+            </ul>
+            
+            <h3>Files & Implementation</h3>
+            <div class="files-list">
+                <div class="file-path">📄 components/TradingViewWidget.tsx</div>
+                <div class="description">
+                    Wrapper component that dynamically injects TradingView's JavaScript
+                    <ul style="margin-top: 5px; margin-bottom: 0;">
+                        <li>Loads external scripts from TradingView CDN</li>
+                        <li>Applies configuration JSON for customization</li>
+                        <li>Manages DOM injection for charts</li>
+                    </ul>
+                </div>
+                
+                <div class="file-path">📄 app/(root)/page.tsx</div>
+                <div class="description">
+                    Dashboard home page with 4 TradingView widgets:
+                    <ul style="margin-top: 5px; margin-bottom: 0;">
+                        <li><strong>Market Overview:</strong> Major indices (SPY, QQQ, DXY, TLT)</li>
+                        <li><strong>Stock Heatmap:</strong> Visual sector performance</li>
+                        <li><strong>Timeline Widget:</strong> Recent market events</li>
+                        <li><strong>Market Quotes:</strong> Top stocks and prices</li>
+                    </ul>
+                </div>
+                
+                <div class="file-path">📄 lib/constants.ts</div>
+                <div class="description">
+                    Widget configuration objects defining appearance, theme, colors
+                </div>
+            </div>
+            
+            <h3>Configuration Example</h3>
+            <div class="code-block">
+MARKET_OVERVIEW_WIDGET_CONFIG = {
+    colorTheme: 'dark',
+    dateRange: '12M',
+    locale: 'en',
+    isTransparent: true,
+    showFloatingTooltip: true,
+    plotLineColorGrowing: '#0FEDBE',
+    plotLineColorFalling: '#0FEDBE',
+    gridLineColor: 'rgba(240, 243, 250, 0)',
+    scaleFontColor: '#DBDBDB'
+}
+            </div>
+            
+            <h3>How It Works</h3>
+            <div class="flow-diagram">
+                <div class="flow-step">Dashboard page loads</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">TradingViewWidget injects external script</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">TradingView servers stream real-time data</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Charts render in iframe (isolated DOM)</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">User sees live interactive charts</div>
+            </div>
+            
+            <h3>Key Advantages</h3>
+            <div class="key-features">
+                <ul>
+                    <li><strong>Zero Backend Load:</strong> TradingView handles all data streaming</li>
+                    <li><strong>Professional Quality:</strong> Charts used by financial institutions</li>
+                    <li><strong>Interactive:</strong> Users can zoom, pan, add indicators</li>
+                    <li><strong>Responsive:</strong> Works on desktop and mobile</li>
+                    <li><strong>Customizable:</strong> Theme, colors, symbols easily configurable</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- 3. MongoDB + Mongoose -->
+        <div class="api-section">
+            <h2>3. MongoDB + Mongoose - Database Layer</h2>
+            
+            <h3>What is it?</h3>
+            <p>NoSQL database for storing user data, watchlists, price alerts, and user preferences. Mongoose provides an ODM (Object Document Mapper) for schema validation and easier data management.</p>
+            
+            <h3>Configuration</h3>
+            <p><strong>Connection String:</strong> <code>MONGODB_URI=mongodb+srv://user:password@cluster.mongodb.net/</code></p>
+            <p><strong>Database Cluster:</strong> MongoDB Atlas (managed cloud service)</p>
+            
+            <h3>What's Stored</h3>
+            <ul>
+                <li><strong>Users:</strong> Email, password hash, profile information</li>
+                <li><strong>Watchlists:</strong> User's tracked stocks</li>
+                <li><strong>Price Alerts:</strong> Stock price alert configurations</li>
+                <li><strong>User Preferences:</strong> Investment goals, risk tolerance, preferred industries</li>
+                <li><strong>Sessions:</strong> Authentication sessions (via Better Auth)</li>
+            </ul>
+            
+            <h3>Files & Implementation</h3>
+            <div class="files-list">
+                <div class="file-path">📄 app/(root)/database/mongoose.ts</div>
+                <div class="description">
+                    MongoDB connection manager with connection pooling
+                </div>
+            </div>
+            
+            <h3>Connection Pooling Strategy</h3>
+            <p><span class="highlight">This is CRITICAL for Next.js development</span></p>
+            <div class="code-block">
+declare global {
+    var mongooseCache: {
+        conn: typeof mongoose | null,
+        promise: Promise&lt;typeof mongoose&gt; | null
+    }
+}
+
+// First connection: Creates and caches promise
+if (!cached.promise) {
+    cached.promise = mongoose.connect(MONGODB_URI, 
+        { bufferCommands: false }
+    );
+}
+
+// Subsequent connections: Returns cached connection
+if (cached.conn) return cached.conn;
+            </div>
+            
+            <h3>Why This Pattern Matters</h3>
+            <p><strong>Problem:</strong> Next.js reloads code during development → Creates multiple connections → MongoDB throws "too many connections" error</p>
+            <p><strong>Solution:</strong> Global cache ensures only ONE connection exists across hot reloads</p>
+            <div class="key-features">
+                <ul>
+                    <li>First call: Creates connection, stores in global cache</li>
+                    <li>Subsequent calls: Returns cached connection immediately</li>
+                    <li>Prevents connection pool exhaustion</li>
+                    <li>Handles connection errors with retry logic</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 4. Better Auth -->
+        <div class="api-section">
+            <h2>4. Better Auth - Authentication & Sessions</h2>
+            
+            <h3>What is it?</h3>
+            <p>Modern authentication library for Next.js that handles user registration, login, session management, and OAuth integration.</p>
+            
+            <h3>Configuration</h3>
+            <p><strong>Secret:</strong> <code>BETTER_AUTH_SECRET</code> - Cryptographic key for session encryption</p>
+            <p><strong>Base URL:</strong> <code>BETTER_AUTH_URL=http://localhost:3000</code></p>
+            
+            <h3>Features Enabled</h3>
+            <ul>
+                <li><strong>Email/Password Authentication:</strong> Traditional login/signup</li>
+                <li><strong>Min Password Length:</strong> 8 characters</li>
+                <li><strong>Max Password Length:</strong> 128 characters</li>
+                <li><strong>Email Verification:</strong> Disabled (can enable for production)</li>
+                <li><strong>Auto Sign-In:</strong> After registration, auto-login enabled</li>
+                <li><strong>Session Cookies:</strong> Next.js cookie plugin for session storage</li>
+            </ul>
+            
+            <h3>Files & Implementation</h3>
+            <div class="files-list">
+                <div class="file-path">📄 lib/better-auth/auth.ts</div>
+                <div class="description">
+                    Creates and configures Better Auth instance
+                    <ul style="margin-top: 5px; margin-bottom: 0;">
+                        <li>Uses MongoDB adapter for database</li>
+                        <li>Configures email/password strategy</li>
+                        <li>Sets up session middleware</li>
+                    </ul>
+                </div>
+                
+                <div class="file-path">📄 app/(auth)/sign-up/page.tsx</div>
+                <div class="description">
+                    User registration page collecting:
+                    <ul style="margin-top: 5px; margin-bottom: 0;">
+                        <li>Basic info: Email, Name, Password</li>
+                        <li>Profile info: Country, Investment Goals, Risk Tolerance, Industry</li>
+                    </ul>
+                </div>
+                
+                <div class="file-path">📄 app/(auth)/sign-in/page.tsx</div>
+                <div class="description">
+                    Login page for existing users
+                </div>
+            </div>
+            
+            <h3>Registration & Auth Flow</h3>
+            <div class="flow-diagram">
+                <div class="flow-step">User enters email, password, profile info</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Validates input with Better Auth</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Hashes password with bcrypt</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Stores in MongoDB via Mongoose</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Creates session cookie</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Triggers 'app/user.created' event</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Redirects to dashboard</div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- 5. Inngest -->
+        <div class="api-section">
+            <h2>5. Inngest - Background Job Processing & Workflow Engine</h2>
+            
+            <h3>What is it?</h3>
+            <p>Serverless background job queue for executing long-running tasks asynchronously. Similar to Bull, RabbitMQ, or Celery but specifically designed for serverless environments.</p>
+            
+            <h3>Why You Need It</h3>
+            <p><strong>Problem:</strong> Sending emails, generating AI content, processing alerts are slow operations. Blocking the user request is bad UX.</p>
+            <p><strong>Solution:</strong> Queue jobs in Inngest, complete them asynchronously, notify user when done.</p>
+            <ul>
+                <li>Non-blocking operations</li>
+                <li>Automatic retries on failure</li>
+                <li>Durable execution (persists if app crashes)</li>
+                <li>Workflow orchestration (chain multiple steps)</li>
+                <li>Monitoring and debugging dashboard</li>
+            </ul>
+            
+            <h3>Files & Implementation</h3>
+            <div class="files-list">
+                <div class="file-path">📄 lib/inngest/client.ts</div>
+                <div class="description">
+                    Initializes Inngest client for triggering background jobs
+                </div>
+                
+                <div class="file-path">📄 lib/inngest/functions.ts</div>
+                <div class="description">
+                    Defines background job functions
+                    <ul style="margin-top: 5px; margin-bottom: 0;">
+                        <li><code>sendSignUpEmail</code> - Triggered on user registration</li>
+                    </ul>
+                </div>
+                
+                <div class="file-path">📄 app/api/inngest/route.ts</div>
+                <div class="description">
+                    Webhook endpoint that Inngest calls to execute jobs
+                </div>
+            </div>
+            
+            <h3>Example: Sign-Up Email Job</h3>
+            <div class="code-block">
+export const sendSignUpEmail = inngest.createFunction(
+    { 
+        id: 'sign-up-email', 
+        retries: 1  // Retry once if fails
+    },
+    { event: 'app/user.created' },  // Triggered when event fires
+    async ({ event, step }) => {
+        // Step 1: Generate personalized intro with AI
+        const response = await step.ai.infer('generate-welcome-intro', {...});
+        
+        // Step 2: Send email
+        await step.run('send-welcome-email', async () => {
+            return await sendWelcomeEmail({...});
+        });
+        
+        return { success: true };
+    }
+);
+            </div>
+            
+            <h3>How It Works</h3>
+            <div class="flow-diagram">
+                <div class="flow-step">User clicks "Sign Up"</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Better Auth stores to MongoDB</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Fires 'app/user.created' event</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Inngest receives event</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Calls /api/inngest webhook</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Executes sendSignUpEmail function</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">User sees success message immediately</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Email sent in background asynchronously</div>
+            </div>
+            
+            <h3>Key Features</h3>
+            <div class="key-features">
+                <ul>
+                    <li><strong>Event-Driven:</strong> Trigger jobs with events (user.created, price.alert)</li>
+                    <li><strong>Durable:</strong> Jobs persist in database, retry if app crashes</li>
+                    <li><strong>Retries:</strong> Automatic retry with exponential backoff</li>
+                    <li><strong>Step Functions:</strong> Chain multiple async operations</li>
+                    <li><strong>Monitoring:</strong> Dashboard to track job status and logs</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 6. Google Gemini AI -->
+        <div class="api-section">
+            <h2>6. Google Gemini AI - Personalized Content Generation</h2>
+            
+            <h3>What is it?</h3>
+            <p>Large language model API for generating AI-powered content. Used to create personalized email content based on user profile.</p>
+            
+            <h3>Configuration</h3>
+            <p><strong>API Key:</strong> <code>GEMINI_API_KEY</code></p>
+            <p><strong>Model:</strong> <code>gemini-2.0-flash-lite</code> - Fast and efficient</p>
+            
+            <h3>Why You Need It</h3>
+            <ul>
+                <li><strong>Personalization:</strong> Generic emails have low engagement; AI generates personalized intros</li>
+                <li><strong>Context-Aware:</strong> Creates content tailored to user's investment profile</li>
+                <li><strong>Scalable:</strong> Handles thousands of personalized emails efficiently</li>
+            </ul>
+            
+            <h3>Files & Implementation</h3>
+            <div class="files-list">
+                <div class="file-path">📄 lib/inngest/functions.ts</div>
+                <div class="description">
+                    Calls Gemini API within Inngest step function
+                </div>
+                
+                <div class="file-path">📄 lib/inngest/prompts.ts</div>
+                <div class="description">
+                    Contains prompt templates for Gemini
+                    <ul style="margin-top: 5px; margin-bottom: 0;">
+                        <li><code>PERSONALIZED_WELCOME_EMAIL_PROMPT</code></li>
+                        <li><code>NEWS_SUMMARY_EMAIL_PROMPT</code></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Personalization Data</h3>
+            <p>Gemini uses user profile data to generate personalized content:</p>
+            <ul>
+                <li><strong>Investment Goals:</strong> Growth, Income, Balanced, Conservative</li>
+                <li><strong>Risk Tolerance:</strong> Low, Medium, High</li>
+                <li><strong>Preferred Industries:</strong> Technology, Healthcare, Finance, Energy, Consumer</li>
+                <li><strong>Country & Experience Level</strong></li>
+            </ul>
+            
+            <h3>Example Personalization</h3>
+            <p><strong>For Tech Growth Investor:</strong></p>
+            <blockquote style="background: #f0f8f5; padding: 15px; border-left: 3px solid #0FEDBE; margin: 15px 0;">
+                "Thanks for joining! As someone focused on <strong>technology growth stocks</strong>, you'll love our real-time alerts for companies like the ones you're tracking. We'll help you spot opportunities before they become mainstream news."
+            </blockquote>
+            
+            <p><strong>For Conservative Retiree:</strong></p>
+            <blockquote style="background: #f0f8f5; padding: 15px; border-left: 3px solid #0FEDBE; margin: 15px 0;">
+                "Great to have you aboard! Perfect for your <strong>conservative retirement strategy</strong> — we'll help you monitor dividend stocks without overwhelming you with noise. You can finally track your portfolio progress with confidence and clarity."
+            </blockquote>
+            
+            <h3>How It Works</h3>
+            <div class="flow-diagram">
+                <div class="flow-step">User signs up with profile (goals, industries, risk)</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Inngest triggered with user data</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Create prompt with user profile</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Send to Gemini API</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">AI generates personalized intro</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Embed in email template</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">User receives personalized email</div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- 7. Nodemailer -->
+        <div class="api-section">
+            <h2>7. Nodemailer - Email Sending Service</h2>
+            
+            <h3>What is it?</h3>
+            <p>Node.js library for sending emails via SMTP protocol. In your case, configured to use Gmail's SMTP server.</p>
+            
+            <h3>Configuration</h3>
+            <p><strong>Service:</strong> Gmail</p>
+            <p><strong>Email:</strong> <code>aakashgangwar56@gmail.com</code></p>
+            <p><strong>Password:</strong> 16-character App-Specific Password (NOT Gmail password)</p>
+            
+            <h3>Why App Password?</h3>
+            <div class="key-features">
+                <ul>
+                    <li><strong>Security:</strong> Token only allows email sending, not full account access</li>
+                    <li><strong>Account Protection:</strong> If token leaked, attacker can't access Gmail account</li>
+                    <li><strong>Revocable:</strong> Can delete token without changing Gmail password</li>
+                </ul>
+            </div>
+            
+            <h3>Files & Implementation</h3>
+            <div class="files-list">
+                <div class="file-path">📄 lib/nodemailer/index.ts</div>
+                <div class="description">
+                    Nodemailer setup and email sending functions
+                    <ul style="margin-top: 5px; margin-bottom: 0;">
+                        <li><code>transporter</code> - SMTP connection</li>
+                        <li><code>sendWelcomeEmail()</code> - Send welcome email</li>
+                    </ul>
+                </div>
+                
+                <div class="file-path">📄 lib/nodemailer/templates.ts</div>
+                <div class="description">
+                    HTML email templates
+                    <ul style="margin-top: 5px; margin-bottom: 0;">
+                        <li><code>WELCOME_EMAIL_TEMPLATE</code> - Welcome email layout</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Email Setup Code</h3>
+            <div class="code-block">
+export const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.NODEMAILER_EMAIL,
+        pass: process.env.NODEMAILER_PASSWORD  // 16-char App Password
+    }
+});
+
+export const sendWelcomeEmail = async ({ 
+    email, 
+    name, 
+    intro  // Personalized intro from Gemini
+}) => {
+    const htmlTemplate = WELCOME_EMAIL_TEMPLATE
+        .replace('{{name}}', name)
+        .replace('{{intro}}', intro);
+    
+    const mailOptions = {
+        from: '"Signalist" &lt;signalist@signalist.pro&gt;',
+        to: email,
+        subject: 'Welcome to Signalist - your toolkit is ready!',
+        html: htmlTemplate
+    };
+    
+    await transporter.sendMail(mailOptions);
+};
+            </div>
+            
+            <h3>When Email Is Sent</h3>
+            <ol>
+                <li><strong>User Registration:</strong> Welcome email with personalized intro</li>
+                <li><strong>Future Features:</strong> 
+                    <ul style="margin-left: 20px;">
+                        <li>Price alert notifications</li>
+                        <li>Market news digests</li>
+                        <li>Portfolio summaries</li>
+                        <li>Weekly investment reports</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <h3>Email Limits</h3>
+            <div class="key-features">
+                <ul>
+                    <li><strong>Free Tier:</strong> 500 emails per day</li>
+                    <li><strong>For Production:</strong> Consider SendGrid, Mailgun for higher volume</li>
+                    <li><strong>Reliability:</strong> Gmail ensures high delivery rate</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 8. Frontend Tech Stack -->
+        <div class="api-section">
+            <h2>8. Frontend Tech Stack - Next.js, React, TypeScript</h2>
+            
+            <h3>Next.js Framework</h3>
+            <p>Full-stack React framework with built-in optimization, routing, and server-side rendering.</p>
+            
+            <h3>Project Structure</h3>
+            <table class="summary-table">
+                <tr>
+                    <th>Directory</th>
+                    <th>Purpose</th>
+                </tr>
+                <tr>
+                    <td><code>app/(auth)</code></td>
+                    <td>Public authentication pages (login, signup)</td>
+                </tr>
+                <tr>
+                    <td><code>app/(root)</code></td>
+                    <td>Protected app pages (dashboard, stocks)</td>
+                </tr>
+                <tr>
+                    <td><code>app/api</code></td>
+                    <td>Backend API routes and webhooks</td>
+                </tr>
+                <tr>
+                    <td><code>components</code></td>
+                    <td>Reusable React components</td>
+                </tr>
+                <tr>
+                    <td><code>lib/actions</code></td>
+                    <td>Server Actions (backend logic callable from frontend)</td>
+                </tr>
+            </table>
+            
+            <h3>Server Actions</h3>
+            <p>Functions marked with <code>'use server'</code> that run on backend but are called from frontend components:</p>
+            <ul>
+                <li><code>lib/actions/auth.actions.ts</code> - Authentication functions</li>
+                <li><code>lib/actions/finnhub.actions.ts</code> - Finnhub API calls (only server-side)</li>
+            </ul>
+            
+            <p><strong>Example:</strong> <code>getNews()</code> runs on server, so API key is never exposed to browser</p>
+        </div>
+
+        <!-- 9. UI Components -->
+        <div class="api-section">
+            <h2>9. UI Components - shadcn/ui & Tailwind CSS</h2>
+            
+            <h3>shadcn/ui - Accessible Component Library</h3>
+            <p>Pre-built, fully customizable React components built on Radix UI primitives.</p>
+            
+            <h3>Core UI Components</h3>
+            <table class="summary-table">
+                <tr>
+                    <th>Component</th>
+                    <th>Usage</th>
+                </tr>
+                <tr>
+                    <td><code>button.tsx</code></td>
+                    <td>Styled button component</td>
+                </tr>
+                <tr>
+                    <td><code>input.tsx</code></td>
+                    <td>Form text input</td>
+                </tr>
+                <tr>
+                    <td><code>select.tsx</code></td>
+                    <td>Dropdown selector</td>
+                </tr>
+                <tr>
+                    <td><code>dialog.tsx</code></td>
+                    <td>Modal dialog windows</td>
+                </tr>
+                <tr>
+                    <td><code>dropdown-menu.tsx</code></td>
+                    <td>User profile/settings menu</td>
+                </tr>
+                <tr>
+                    <td><code>avatar.tsx</code></td>
+                    <td>User profile picture</td>
+                </tr>
+                <tr>
+                    <td><code>popover.tsx</code></td>
+                    <td>Tooltips and floating content</td>
+                </tr>
+                <tr>
+                    <td><code>command.tsx</code></td>
+                    <td>Command palette for search</td>
+                </tr>
+                <tr>
+                    <td><code>sonner.tsx</code></td>
+                    <td>Toast notifications</td>
+                </tr>
+            </table>
+            
+            <h3>Form Components</h3>
+            <div class="files-list">
+                <div class="file-path">📄 components/forms/</div>
+                <div class="description">
+                    <ul style="margin-top: 5px; margin-bottom: 0;">
+                        <li><code>InputField.tsx</code> - Reusable text input with validation</li>
+                        <li><code>SelectField.tsx</code> - Reusable dropdown</li>
+                        <li><code>CountrySelectField.tsx</code> - Country selector</li>
+                        <li><code>FooterLink.tsx</code> - Footer link styling</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Tailwind CSS</h3>
+            <p>Utility-first CSS framework for rapid UI development with pre-defined classes.</p>
+            <div class="key-features">
+                <ul>
+                    <li><strong>Responsive:</strong> Mobile-first design with breakpoints</li>
+                    <li><strong>Theming:</strong> Dark/light mode support</li>
+                    <li><strong>Performance:</strong> Only ships CSS for used classes</li>
+                    <li><strong>Consistency:</strong> Design tokens for colors, spacing, typography</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- 10. React Hook Form -->
+        <div class="api-section">
+            <h2>10. React Hook Form - Form Validation & Management</h2>
+            
+            <h3>What is it?</h3>
+            <p>Lightweight form library optimized for performance with zero-re-render validation.</p>
+            
+            <h3>Why You Need It</h3>
+            <ul>
+                <li><strong>Performance:</strong> Doesn't re-render entire form on keystroke</li>
+                <li><strong>Easy Validation:</strong> Built-in pattern matching and async validation</li>
+                <li><strong>Error Handling:</strong> Clear per-field error messages</li>
+                <li><strong>Type-Safe:</strong> Full TypeScript support</li>
+            </ul>
+            
+            <h3>Used For</h3>
+            <ul>
+                <li>Sign-up form with profile data</li>
+                <li>Sign-in form</li>
+                <li>Stock search forms</li>
+                <li>Price alert configurations</li>
+                <li>Watchlist management</li>
+            </ul>
+        </div>
+
+        <!-- Complete Data Flow -->
+        <div class="api-section">
+            <h2>11. Complete Data Flow Diagrams</h2>
+            
+            <h3>A. User Registration & Welcome Email Flow</h3>
+            <div class="flow-diagram" style="font-size: 0.9em;">
+                <div class="flow-step">User enters email, password, profile (goals, risk, industry)</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">React form validates input (React Hook Form)</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Better Auth hashes password with bcrypt</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Stores in MongoDB via Mongoose</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Fires 'app/user.created' event</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Inngest picks up event</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Calls /api/inngest webhook</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Step 1: Send user profile to Gemini AI</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Gemini generates personalized email intro</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Step 2: Embed in email template</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Nodemailer sends via Gmail SMTP</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">User receives personalized welcome email</div>
+            </div>
+            
+            <h3>B. Dashboard Stock Data Flow</h3>
+            <div class="flow-diagram" style="font-size: 0.9em;">
+                <div class="flow-step">User logs in, authenticates with Better Auth</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Dashboard page loads</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">TradingView widgets render (4 charts)</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">External TradingView scripts load</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">TradingView servers stream real-time data</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Charts display live prices, heatmaps, timeline</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">(Optional) Fetch company news via Finnhub</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Display news in sidebar</div>
+            </div>
+            
+            <h3>C. Stock Search & News Flow</h3>
+            <div class="flow-diagram" style="font-size: 0.9em;">
+                <div class="flow-step">User enters stock symbol (e.g., "AAPL")</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">SearchCommand component debounces input (500ms delay)</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Calls getNews(["AAPL"]) server action</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">finnhub.actions.ts makes API call</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Hits /company-news endpoint with auth token</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Validates and formats articles</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Returns up to 6 recent articles</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">Display results with toast notification</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">User can click to view full article or add to watchlist</div>
+            </div>
+        </div>
+
+        <!-- Tech Stack Summary -->
+        <div class="api-section">
+            <h2>12. Complete Tech Stack Summary Table</h2>
+            
+            <table class="summary-table">
+                <tr>
+                    <th>Layer</th>
+                    <th>Technology</th>
+                    <th>Purpose</th>
+                    <th>Key File</th>
+                </tr>
+                <tr>
+                    <td><strong>Frontend</strong></td>
+                    <td>React 19 + TypeScript</td>
+                    <td>UI framework</td>
+                    <td>app/, components/</td>
+                </tr>
+                <tr>
+                    <td><strong>Framework</strong></td>
+                    <td>Next.js 16</td>
+                    <td>Full-stack framework, routing, SSR</td>
+                    <td>next.config.ts</td>
+                </tr>
+                <tr>
+                    <td><strong>Styling</strong></td>
+                    <td>Tailwind CSS + shadcn/ui</td>
+                    <td>Component styling and UI library</td>
+                    <td>components/ui/</td>
+                </tr>
+                <tr>
+                    <td><strong>Forms</strong></td>
+                    <td>React Hook Form</td>
+                    <td>Form validation and management</td>
+                    <td>components/forms/</td>
+                </tr>
+                <tr>
+                    <td><strong>Authentication</strong></td>
+                    <td>Better Auth</td>
+                    <td>User login, registration, sessions</td>
+                    <td>lib/better-auth/auth.ts</td>
+                </tr>
+                <tr>
+                    <td><strong>Database</strong></td>
+                    <td>MongoDB + Mongoose</td>
+                    <td>Data persistence</td>
+                    <td>app/(root)/database/mongoose.ts</td>
+                </tr>
+                <tr>
+                    <td><strong>Stock Data</strong></td>
+                    <td>Finnhub API</td>
+                    <td>Real-time stock prices, news</td>
+                    <td>lib/actions/finnhub.actions.ts</td>
+                </tr>
+                <tr>
+                    <td><strong>Charts</strong></td>
+                    <td>TradingView Widget</td>
+                    <td>Interactive stock charts</td>
+                    <td>components/TradingViewWidget.tsx</td>
+                </tr>
+                <tr>
+                    <td><strong>Background Jobs</strong></td>
+                    <td>Inngest</td>
+                    <td>Async task processing, workflows</td>
+                    <td>lib/inngest/, app/api/inngest/</td>
+                </tr>
+                <tr>
+                    <td><strong>AI</strong></td>
+                    <td>Google Gemini</td>
+                    <td>Personalized content generation</td>
+                    <td>lib/inngest/prompts.ts</td>
+                </tr>
+                <tr>
+                    <td><strong>Email</strong></td>
+                    <td>Nodemailer + Gmail</td>
+                    <td>Sending transactional emails</td>
+                    <td>lib/nodemailer/</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Key Takeaways -->
+        <div class="api-section">
+            <h2>13. Key Architectural Decisions & Takeaways</h2>
+            
+            <h3>1. Server Actions for Security</h3>
+            <p>API keys (Finnhub, Gemini) never exposed to browser. All sensitive operations run on server via Server Actions.</p>
+            
+            <h3>2. Global Connection Pooling</h3>
+            <p>MongoDB connection cached globally to prevent "too many connections" errors during Next.js development with hot reload.</p>
+            
+            <h3>3. Asynchronous Email Processing</h3>
+            <p>Emails sent via Inngest background jobs, not during user request. Better UX + ensures reliability.</p>
+            
+            <h3>4. Personalization via AI</h3>
+            <p>User profile data → Gemini → Personalized email content → Higher engagement and retention.</p>
+            
+            <h3>5. Real-time Data Without Backend Load</h3>
+            <p>TradingView handles all chart data streaming. Backend only provides configuration. Reduces server costs and complexity.</p>
+            
+            <h3>6. Caching Strategy for APIs</h3>
+            <p>Finnhub news cached for 300 seconds. Balances freshness with API quota efficiency.</p>
+            
+            <h3>7. Zero-Reload Form Validation</h3>
+            <p>React Hook Form prevents unnecessary re-renders. Better performance for complex forms.</p>
+            
+            <h3>8. Modular Component Structure</h3>
+            <p>shadcn/ui components are customizable and source-included. No vendor lock-in.</p>
+        </div>
+
+        <!-- Future Considerations -->
+        <div class="api-section">
+            <h2>14. Future Enhancement Opportunities</h2>
+            
+            <div class="key-features">
+                <ul>
+                    <li><strong>Price Alerts:</strong> Inngest scheduled jobs to check prices and send notifications</li>
+                    <li><strong>Weekly Reports:</strong> Automated portfolio summaries via Inngest + Gemini</li>
+                    <li><strong>Real-time WebSockets:</strong> Live watchlist updates via Socket.io</li>
+                    <li><strong>Advanced Analytics:</strong> ML predictions for stock trends</li>
+                    <li><strong>Social Features:</strong> Share watchlists, follow other traders</li>
+                    <li><strong>Mobile App:</strong> React Native using same backend</li>
+                    <li><strong>OAuth Integration:</strong> Better Auth supports Google, GitHub, etc.</li>
+                    <li><strong>Advanced Email:</strong> Switch to SendGrid for higher volume</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2026 Signalist Stock Tracker - Project Review Documentation</p>
+            <p>Generated for technical review and team preparation</p>
+        </footer>
+    </div>
+</body>
+</html>

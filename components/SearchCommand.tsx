@@ -7,6 +7,7 @@ import {Loader2,  TrendingUp} from "lucide-react";
 import Link from "next/link";
 import {searchStocks} from "@/lib/actions/finnhub.actions";
 import {useDebounce} from "@/hooks/useDebounce";
+import WatchlistToggle from "@/components/WatchlistToggle";
 
 
 export default function SearchCommand({ renderAs = 'button', label = 'Add stock', initialStocks }: SearchCommandProps) {
@@ -86,22 +87,30 @@ export default function SearchCommand({ renderAs = 'button', label = 'Add stock'
               </div>
               {displayStocks?.map((stock, i) => (
                   <li key={stock.symbol} className="search-item">
-                    <Link
-                        href={`/stocks/${stock.symbol}`}
-                        onClick={handleSelectStock}
-                        className="search-item-link"
-                    >
-                      <TrendingUp className="h-4 w-4 text-gray-500" />
-                      <div  className="flex-1">
-                        <div className="search-item-name">
-                          {stock.name}
+                    <div className="search-item-content">
+                      <Link
+                          href={`/stocks/${stock.symbol}`}
+                          onClick={handleSelectStock}
+                          className="search-item-link"
+                      >
+                        <TrendingUp className="h-4 w-4 text-gray-500" />
+                        <div  className="flex-1">
+                          <div className="search-item-name">
+                            {stock.name}
+                          </div>
+                          <div className="text-sm text-gray-500">
+                            {stock.symbol} | {stock.exchange } | {stock.type}
+                          </div>
                         </div>
-                        <div className="text-sm text-gray-500">
-                          {stock.symbol} | {stock.exchange } | {stock.type}
-                        </div>
-                      </div>
-                    {/*<Star />*/}
-                    </Link>
+                      </Link>
+                      <WatchlistToggle 
+                        symbol={stock.symbol}
+                        companyName={stock.name}
+                        size="sm"
+                        variant="ghost"
+                        iconOnly={true}
+                      />
+                    </div>
                   </li>
               ))}
             </ul>

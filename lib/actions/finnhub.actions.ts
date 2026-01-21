@@ -22,6 +22,17 @@ async function fetchJSON<T>(url: string, revalidateSeconds?: number): Promise<T>
 
 export { fetchJSON };
 
+export async function getCompanyQuote(symbol: string): Promise<{ c: number } | null> {
+  try {
+    const url = `${FINNHUB_BASE_URL}/quote?symbol=${encodeURIComponent(symbol)}&token=${NEXT_PUBLIC_FINNHUB_API_KEY}`;
+    const data = await fetchJSON<{ c: number }>(url, 300);
+    return data || null;
+  } catch (error) {
+    console.error(`Error fetching quote for ${symbol}:`, error);
+    return null;
+  }
+}
+
 export async function getNews(symbols?: string[]): Promise<MarketNewsArticle[]> {
   try {
     const range = getDateRange(5);
